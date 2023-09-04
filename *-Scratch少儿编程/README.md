@@ -1,0 +1,66 @@
+# Scratch-gui部署和编译
+[参考文章](https://zhuanlan.zhihu.com/p/220512832)
+
+scratch3.0从零开始二次编译
+前置工作（针对不能在GitHub上下载源码的情况）
+
+GitHub仓库下载scratch所需代码 https://github.com/LLK 注：如果下载速度慢可以挂VPN或者将Github代码导入到码云
+
+1.创建码云账号https://gitee.com，并关联github账号
+2.在github上面将要下载的项目fork，然后在码云中从github导入仓库，再在码云中下载源码
+
+一、配置环境
+安装Node.js
+1、前往Node.js官网下载 https://nodejs.org/ ![]
+
+
+2、安装Node.js 一直next直到finish
+
+3、测试安装是否成功 win+R调出cmd命令框，输入：
+
+node -v
+
+出现版本号，安装成功，输入：exit退出（最新版node.js自带npm）
+
+安装Git
+1、前往Git官网下载win的Git安装程序 https://git-scm.com/downloads ![]
+
+
+2、安装Git 一直next直到finish
+
+测试Git 如node.js进入cmd命令，输入：
+
+git --version
+
+二、编译scratch3.0 （主要使用gui）
+case 1：网络良好（可能需要VPN）
+流程：打开cmd命令窗口-创建Scratch文件夹，cd到文件夹clone源码再npm
+
+cd \
+mkdir Scratch
+cd Scratch
+git clone https://github.com/llk/scratch-gui
+cd scratch-gui
+npm install
+npm run build （生成静态网页，如果需要执行此步骤）
+npm start    （服务器访问）
+如果出现：Compiled successfully表示编译成功 ![]
+
+
+此时打开浏览器，输入本地端口：即可启动scratch3.0，界面与官网一致 http://localhost:8601/
+
+Case 2 ：无法连接外网
+Tips:
+
+win下如果要对源码执行npm命令，直接在源码文件夹上按住shift+右键，选择“在此处打开命令行窗口”，有些可能是poweshell，即可打开cmd
+淘宝NPM镜像：http://npm.taobao.org/ (淘宝镜像无法正确安装依赖包) scratch3.0系列项目地址：https://github.com/LLK 项目编译：
+
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+git clone https://github.com/LLK/scratch-gui.git  
+（也可直接下载,在源码文件夹上执行cmd）
+cd scratch-gui
+cnpm install
+///可能需要根据提示手动安装某些依赖项
+cnpm run build （生成静态网页）
+cnpm start （服务器访问）
+注意：若chromedriver安装错误，再次使用cnpm安装。
